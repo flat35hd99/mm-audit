@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  prometheus:
+    image: 'prom/prometheus:v2.37.1'
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus:/etc/prometheus:ro
+      - ./volume/prometheus:/prometheus
+
+  grafana:
+    image: 'grafana/grafana-enterprise:8.3.11'
+    ports:
+      - '3000:3000'
+    volumes:
+      - './grafana/grafana.ini:/etc/grafana/grafana.ini'
+      - './volume/grafana:/grafana'
